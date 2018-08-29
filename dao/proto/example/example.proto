@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package go.micro.srv.dbservice;
+
+service Preferences {
+	rpc GetPreference(PreferenceRequest) returns (PreferenceResponse) {}
+	rpc GetPreferencesList(PreferencesListRequest) returns (PreferencesListResponse) {}
+}
+
+message Preference {
+    int32 user = 1;
+    string name = 2;
+    string value = 3;
+}
+
+message PreferenceRequest {
+	int32 user = 1;
+}
+
+message PreferenceResponse {
+    int32 resultCode  = 1;
+	Preference prefer = 2;
+}
+
+message PreferencesListRequest {
+	int32 index = 1;
+	int32 limit = 2;
+}
+
+message PreferencesListResponse {
+	int32               resultCode = 1;
+	repeated Preference prefers    = 2;
+}
