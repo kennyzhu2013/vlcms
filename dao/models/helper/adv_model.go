@@ -40,15 +40,19 @@ type AdvAvsPos struct {
 	Name string
 }
 
+// 支持分表要用ShardGetTableName...
 func (AdvAvsPos) TableName() string {
-	return "user"
+	return common.ShardGetTableName(&models.TabAdv{}, 0)
 }
 
 // Get advertise lists.
 func Adv_lists(name string, limit, start int) []AdvAvsPos {
-	obj := AdvHelper.DefaultObject().(models.TabAdv)
+	// obj := AdvHelper.DefaultObject().(models.TabAdv)
 	advList := make([]AdvAvsPos, 0)
-	session := common.ORM().Table(&obj).Where("status = ?", 1).Join("INNER", "tab_adv_pos", "tab_adv.pos_id = tab_adv_pos.id")
+	advTabName := common.ShardGetTableName(&models.TabAdv{}, 0)
+	advPosTabName := common.ShardGetTableName(&models.TabAdvPos{}, 0)
+	condition := advTabName + ".pos_id = " + advPosTabName + ".id"
+	session := common.ORM().Table(advTabName).Where("status = ?", 1).Join("INNER", advPosTabName, condition)
 	session.Desc().Where("name = ?", name).Limit(limit, start).Find(&advList)
 	return advList
 }

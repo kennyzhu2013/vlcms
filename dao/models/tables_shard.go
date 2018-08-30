@@ -13,7 +13,7 @@ import (
 	"strconv"
 )
 
-//TableHash name
+// TableHash name
 func tableNameHash(tableName string, suffixKey int64) string {
 	if conf.OrmConf.TableHashValue == 0 {
 		return tableName
@@ -27,14 +27,19 @@ func ShardGetTable(tableNameOrBean interface{}, suffixKey int64) *xorm.Session {
 	return orm.Table(tableNameHash(tbName, suffixKey))
 }
 
-//engine.Table("user").Select("user.*, detail.*").
+func ShardGetTableName(tableNameOrBean interface{}, suffixKey int64) string {
+	tbName := orm.TableName(tableNameOrBean)
+	return tableNameHash(tbName, suffixKey)
+}
+
+// engine.Table("user").Select("user.*, detail.*").
 //    Join("INNER", "detail", "detail.user_id = user.id").
 //    Where("user.name = ?", name).Limit(10, 0).
 //    Find(&users)
-//Get object by primary key id
+// Get object by primary key id
 func ShardGetById(id int64, obj interface{}) error {
-	//// 复合主键的获取方法..
-	//// has, errr := engine.Id(xorm.PK{1,2}).Get(user)..
+	// 复合主键的获取方法..
+	// has, errr := engine.Id(xorm.PK{1,2}).Get(user)..
 	has, err := ShardGetTable(obj, id).Get(obj)
 	if err != nil {
 		return err
@@ -51,8 +56,8 @@ func ShardIsExist(id int64, obj interface{}) bool {
 	return has
 }
 
-//Shard find limit objects.
-//ShardGetTable support array.
+// Shard find limit objects.
+// ShardGetTable support array.
 func ShardFind(id int64, limit, start int, objs interface{}) error {
 	return ShardGetTable(objs, id).Limit(limit, start).Find(objs)
 }
