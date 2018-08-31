@@ -12,6 +12,6 @@ import "github.com/kataras/iris/mvc"
 func Init(app *mvc.Application) {
 	// app.Register(...)
 	// app.Router.Use/UseGlobal/Done(...)
-	app.Handle( new(IndexController) )
+	app.Handle( &IndexController{0} )
 }
 
