@@ -30,8 +30,8 @@ func (m *IndexController) BeforeActivation(b mvc.BeforeActivation) {
 
 // Get serves
 // Method:   GET
-// Resource: http://localhost:8080
-func (m *IndexController) Get() string { return "Hey" }
+// Resource: http://localhost:8080, the same as /index
+func (m *IndexController) Get() string { return m.GetIndex() }
 
 // Get serves
 // Method:   GET
@@ -39,4 +39,4 @@ func (m *IndexController) Get() string { return "Hey" }
 func (m *IndexController) GetIndex() string { return "Hey" }
 
 // GET: http://localhost:8080/root/something/{id:long}
-func (m *IndexController) MyCustomHandler(id int64) string { return "MyCustomHandler says Hey" }
+func (m *IndexController) OpenGame(id int64) string { return "MyCustomHandler says Hey" }

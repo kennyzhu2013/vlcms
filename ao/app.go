@@ -9,6 +9,7 @@ package main
 
 import (
 	"github.com/kataras/iris"
+	"github.com/kataras/iris/middleware/recover"
 	"github.com/kataras/iris/mvc"
 	"github.com/kennyzhu/vlcms/ao/Controller"
 )
@@ -19,14 +20,25 @@ var App *iris.Application
 func Start(runner iris.Runner)  {
 	App = iris.New()
 
+	App.Logger().SetLevel("debug")
+	App.Use(recover.New())
 	App.ConfigureHost(func(h *iris.Supervisor) {
 		h.RegisterOnShutdown(exit)
 	})
 
-	// root path..
-	mvc.Configure( App.Party("/"), Controller.Init )
+	// views register..
+	App.RegisterView(iris.HTML("./web/views", ".html"))
 
-	App.Run( runner )
+	// root path..
+	App.Get("/", func(ctx iris.Context) {
+		ctx.Exec("GET", "/index") // like it was called by the client.
+	})
+	mvc.Configure( App.Party("/index"), Controller.Index )
+
+	App.Run( runner,
+		iris.WithoutVersionChecker,  // disables updates:
+		iris.WithoutServerError(iris.ErrServerClosed),
+		iris.WithOptimizations, )
 }
 
 func exit() {

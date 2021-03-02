@@ -8,8 +8,8 @@
 package handler
 
 import (
+	example "github.com/kennyzhu/go-os/src/dbservice/proto/example"
 	"github.com/micro/go-micro/server"
-	example "github.com/kennyzhu/go-os/dbservice/proto/example"
 )
 
 //all handlers init here...

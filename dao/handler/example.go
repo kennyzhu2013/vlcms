@@ -4,9 +4,9 @@ package handler
 import (
 	"context"
 
-	"github.com/kennyzhu/go-os/log"
-	"github.com/kennyzhu/go-os/dbservice/models"
-	example "github.com/kennyzhu/go-os/dbservice/proto/example"
+	"github.com/kennyzhu/go-os/src/dbservice/models"
+	example "github.com/kennyzhu/go-os/src/dbservice/proto/example"
+	"github.com/kennyzhu/go-os/src/log"
 )
 
 type Example struct{}
@@ -37,7 +37,7 @@ func (e *Example) GetPreference(ctx context.Context, req *example.PreferenceRequ
 }
 
 // get all list.
-func (e *Example) GetPreferencesList(ctx context.Context, req *example.PreferencesListRequest, rsp * example.PreferencesListResponse) error {
+func (e *Example) GetPreferencesList(ctx context.Context, req *example.PreferencesListRequest, rsp *example.PreferencesListResponse) error {
 	log.Info("Received Example.GetPreferencesList request with limits: ", req.Limit)
 
 	pPreferList := make([]*models.Preferences, 0)

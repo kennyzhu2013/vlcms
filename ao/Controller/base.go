@@ -9,9 +9,10 @@ package Controller
 
 import "github.com/kataras/iris/mvc"
 
-func Init(app *mvc.Application) {
+func Index(app *mvc.Application) {
 	// app.Register(...)
 	// app.Router.Use/UseGlobal/Done(...)
 	app.Handle( &IndexController{0} )
+
 }
 

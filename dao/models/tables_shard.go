@@ -9,7 +9,7 @@ package models
 
 import (
 	"github.com/go-xorm/xorm"
-	"github.com/kennyzhu/go-os/dbservice/conf"
+	"github.com/kennyzhu2013/go-os/src/dbservice/conf"
 	"strconv"
 )
 

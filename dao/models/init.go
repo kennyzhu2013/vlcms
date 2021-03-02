@@ -1,16 +1,17 @@
 package models
 
 import (
-	"os"
 	"errors"
 	"fmt"
+	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
-	"github.com/go-xorm/core"
+	"xorm.io/core"
 
 	//self library..
-	. "github.com/kennyzhu/go-os/dbservice/conf"
+	. "github.com/kennyzhu2013/go-os/src/dbservice/conf"
+	// "github.com/xormplus/xorm"
 )
 
 var (

@@ -9,8 +9,8 @@
 package models
 
 import (
-	"github.com/go-xorm/xorm"
 	"bytes"
+	"github.com/xormplus/xorm"
 )
 
 func ORM() *xorm.Engine {

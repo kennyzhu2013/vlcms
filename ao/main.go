@@ -20,10 +20,10 @@ import (
 
 var (
 	service = &registry.Service{
-		Name: "go.micro.srv.iris",
+		Name: "go.micro.srv.aoiris",
 		Nodes: []*registry.Node{
 			{
-				Id:      "go.micro.srv.iris-" + uuid.NewUUID().String(),
+				Id:      "go.micro.srv.aoiris-" + uuid.NewUUID().String(),
 				Address: "localhost",
 				Port:    8400,
 			},
@@ -34,11 +34,11 @@ var (
 // This is example for api gates..
 // To delete....
 func main() {
-	conf.Init( "./conf/irisapi.json" )
+	conf.Init( "./conf/aoiris.json" )
 	service.Name = conf.AppConf.ApiName
 
 	// register call back.
-	Modules.App.ConfigureHost(func(h *iris.Supervisor) {
+	App.ConfigureHost(func(h *iris.Supervisor) {
 		h.RegisterOnShutdown(func() {
 			println("server terminated")
 		})
