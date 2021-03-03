@@ -8,7 +8,7 @@
 package handler
 
 import (
-	example "github.com/kennyzhu/go-os/src/dbservice/proto/example"
+	example "github.com/kennyzhu2013/go-os/src/dbservice/proto/example"
 	"github.com/micro/go-micro/server"
 )
 

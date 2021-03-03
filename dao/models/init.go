@@ -6,11 +6,13 @@ import (
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/go-xorm/xorm"
-	"xorm.io/core"
+	"github.com/xormplus/xorm"
+	"github.com/xormplus/xorm/caches"
+	"github.com/xormplus/xorm/log"
 
 	//self library..
 	. "github.com/kennyzhu2013/go-os/src/dbservice/conf"
+	data "github.com/kennyzhu2013/go-os/src/dbservice/models"
 	// "github.com/xormplus/xorm"
 )
 
@@ -30,7 +32,7 @@ func SyncAllTables() error {
 	if err != nil {
 		panic(err)
 	}*/
-	return orm.Sync2(new(Preferences), )
+	return orm.Sync2(new(data.Preferences), )
 }
 
 //need test promode ..
@@ -49,9 +51,9 @@ func Init(isProMode bool) {
 	orm.SetMaxIdleConns(OrmConf.MaxIdle)
 	orm.SetMaxOpenConns(OrmConf.MaxOpen)
 	if OrmConf.DebugLog {
-		orm.Logger().SetLevel(core.LOG_DEBUG)
+		orm.Logger().SetLevel(log.LOG_DEBUG)
 	} else {
-		orm.Logger().SetLevel(core.LOG_INFO)
+		orm.Logger().SetLevel(log.LOG_INFO)
 	}
 
 
@@ -60,13 +62,13 @@ func Init(isProMode bool) {
 
 		//simple log..
 		sqlWriter,_ := os.Create("./log/sql.log")
-		logger := xorm.NewSimpleLogger(sqlWriter)
+		logger := log.NewSimpleLogger(sqlWriter)
 		logger.ShowSQL(true)
 		orm.SetLogger(logger)
 	}
 
 	if OrmConf.IsCached {
-		ormCache := xorm.NewLRUCacher2(xorm.NewMemoryStore(), OrmConf.CacheTime, OrmConf.CacheCount)
+		ormCache := caches.NewLRUCacher2(caches.NewMemoryStore(), OrmConf.CacheTime, OrmConf.CacheCount)
 		orm.SetDefaultCacher(ormCache)
 	}
 

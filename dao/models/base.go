@@ -27,7 +27,7 @@ func GetById(id int64, obj interface{}) error {
 	//// has, errr := engine.Id(xorm.PK{1,2}).Get(user)..
 	//fmt.Printf("id:%d", id)
 	//fmt.Printf("obj type:%v", reflect.TypeOf(obj))
-	has, err := orm.Id(id).Get(obj)
+	has, err := orm.ID(id).Get(obj)
 	if err != nil {
 		return err
 	}

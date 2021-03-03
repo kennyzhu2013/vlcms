@@ -18,6 +18,7 @@ require (
 	github.com/golang/snappy v0.0.3 // indirect
 	github.com/google/uuid v1.2.0 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
+	github.com/kataras/iris v0.0.2 // indirect
 	github.com/kennyzhu2013/go-os v0.0.0-20201116074641-26b160ea4ff4 // indirect
 	github.com/lucas-clemente/quic-go v0.19.3 // indirect
 	github.com/marten-seemann/qtls-go1-15 v0.1.2 // indirect
@@ -26,6 +27,7 @@ require (
 	github.com/mitchellh/hashstructure v1.1.0 // indirect
 	github.com/nats-io/jwt v1.2.2 // indirect
 	github.com/nats-io/nats.go v1.10.0 // indirect
+	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/tealeg/xlsx v1.0.5 // indirect

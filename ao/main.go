@@ -8,14 +8,15 @@
 package main
 
 import (
+	"fmt"
+	"github.com/kataras/iris"
 	"github.com/micro/go-micro/registry"
 	"github.com/pborman/uuid"
-	"strconv"
-	"github.com/kataras/iris"
-	"fmt"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
+	"vlcms/conf"
 )
 
 var (
@@ -24,8 +25,7 @@ var (
 		Nodes: []*registry.Node{
 			{
 				Id:      "go.micro.srv.aoiris-" + uuid.NewUUID().String(),
-				Address: "localhost",
-				Port:    8400,
+				Address: "127.0.0.1:8400",
 			},
 		},
 	}

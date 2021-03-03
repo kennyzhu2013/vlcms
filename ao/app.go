@@ -11,7 +11,7 @@ import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/recover"
 	"github.com/kataras/iris/mvc"
-	"github.com/kennyzhu/vlcms/ao/Controller"
+	"vlcms/ao/Controller"
 )
 
 var App *iris.Application

@@ -4,9 +4,9 @@ package handler
 import (
 	"context"
 
-	"github.com/kennyzhu/go-os/src/dbservice/models"
-	example "github.com/kennyzhu/go-os/src/dbservice/proto/example"
-	"github.com/kennyzhu/go-os/src/log"
+	"github.com/kennyzhu2013/go-os/src/dbservice/models"
+	example "github.com/kennyzhu2013/go-os/src/dbservice/proto/example"
+	"github.com/kennyzhu2013/go-os/src/log"
 )
 
 type Example struct{}
