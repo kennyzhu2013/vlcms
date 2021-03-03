@@ -35,8 +35,7 @@ func Start(runner iris.Runner)  {
 	})
 	mvc.Configure( App.Party("/index"), Controller.Index )
 
-	App.Run( runner,
-		iris.WithoutVersionChecker,  // disables updates:
+	_ = App.Run( runner,
 		iris.WithoutServerError(iris.ErrServerClosed),
 		iris.WithOptimizations, )
 }
