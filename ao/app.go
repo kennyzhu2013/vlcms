@@ -1,5 +1,5 @@
 /*
-@Time : 2018/8/30 16:01 
+@Time : 2018/8/30 16:01
 @Author : kenny zhu
 @File : app.go
 @Software: GoLand
@@ -11,13 +11,12 @@ import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/recover"
 	"github.com/kataras/iris/mvc"
-	"vlcms/ao/Controller"
+	"github.com/kennyzhu2013/vlcms/ao/Controller"
 )
 
 var App *iris.Application
 
-
-func Start(runner iris.Runner)  {
+func Start(runner iris.Runner) {
 	App = iris.New()
 
 	App.Logger().SetLevel("debug")
@@ -33,11 +32,11 @@ func Start(runner iris.Runner)  {
 	App.Get("/", func(ctx iris.Context) {
 		ctx.Exec("GET", "/index") // like it was called by the client.
 	})
-	mvc.Configure( App.Party("/index"), Controller.Index )
+	mvc.Configure(App.Party("/index"), Controller.Index)
 
-	_ = App.Run( runner,
+	_ = App.Run(runner,
 		iris.WithoutServerError(iris.ErrServerClosed),
-		iris.WithOptimizations, )
+		iris.WithOptimizations)
 }
 
 func exit() {

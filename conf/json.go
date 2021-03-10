@@ -1,5 +1,5 @@
 /*
-@Time : 2018/8/21 11:28 
+@Time : 2018/8/21 11:28
 @Author : kenny zhu
 @File : json.go
 @Software: GoLand
@@ -10,24 +10,24 @@ package conf
 import (
 	"crypto/tls"
 	"fmt"
-	"github.com/kennyzhu/go-os/src/log"
+	"github.com/kennyzhu2013/go-os/src/log"
 	"github.com/micro/go-config"
 	"github.com/micro/go-config/source/file"
 )
 
-var AppConf struct{
+var AppConf struct {
 	//logger..
-	LogLevel int32 `json:"LogLevel"`
-	LogPath  string    `json:"LogPath"`
+	LogLevel int32  `json:"LogLevel"`
+	LogPath  string `json:"LogPath"`
 
 	//srv set..
-	ApiName string     `json:"ApiName"`
-	SrvName string     `json:"SrvName"`
-	VersionTag int     `json:"Version"`
+	ApiName    string `json:"ApiName"`
+	SrvName    string `json:"SrvName"`
+	VersionTag int    `json:"Version"`
 
 	// IP : port
-	IpAddress string    `json:"IpAddress"`
-	Port 	  int32     `json:"Port"`
+	IpAddress string `json:"IpAddress"`
+	Port      int32  `json:"Port"`
 
 	//Todo:
 }
@@ -55,7 +55,7 @@ func Init(configFile string) {
 	}
 	//init logger..
 	log.InitLogger(
-		log.WithLevel( log.Level(AppConf.LogLevel) ),
+		log.WithLevel(log.Level(AppConf.LogLevel)),
 		log.WithFields(log.Fields{
 			"logger": "api",
 		}),
@@ -66,4 +66,3 @@ func Init(configFile string) {
 
 	log.Infof("logger init, path:%v", AppConf.LogPath)
 }
-

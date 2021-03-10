@@ -1,4 +1,4 @@
-module vlcms
+module github.com/kennyzhu2013/vlcms
 
 go 1.14
 

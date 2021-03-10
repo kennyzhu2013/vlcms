@@ -1,5 +1,5 @@
 /*
-@Time : 2018/8/30 15:56 
+@Time : 2018/8/30 15:56
 @Author : kenny zhu
 @File : main.go
 @Software: GoLand
@@ -10,13 +10,13 @@ package main
 import (
 	"fmt"
 	"github.com/kataras/iris"
+	"github.com/kennyzhu2013/vlcms/conf"
 	"github.com/micro/go-micro/registry"
 	"github.com/pborman/uuid"
 	"os"
 	"os/signal"
 	"strconv"
 	"syscall"
-	"vlcms/conf"
 )
 
 var (
@@ -34,7 +34,7 @@ var (
 // This is example for api gates..
 // To delete....
 func main() {
-	conf.Init( "./conf/aoiris.json" )
+	conf.Init("./conf/aoiris.json")
 	service.Name = conf.AppConf.ApiName
 
 	// register call back.
@@ -44,8 +44,8 @@ func main() {
 		})
 	})
 
-	address := conf.AppConf.IpAddress + ":" + strconv.Itoa( int(conf.AppConf.Port) )
-	go Start( iris.Addr( address ) ) // eg:":8400"
+	address := conf.AppConf.IpAddress + ":" + strconv.Itoa(int(conf.AppConf.Port))
+	go Start(iris.Addr(address)) // eg:":8400"
 	// Register modules and app.Run...
 	// All path processed by modules..
 	// service.Handle("/", Modules.App)
@@ -67,4 +67,3 @@ func main() {
 
 	registry.Deregister(service)
 }
-
